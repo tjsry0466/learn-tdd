@@ -55,7 +55,7 @@ describe("Product Controller Get", () => {
     it("should have a getProducts functions", () => {
         expect(typeof productController.getProducts).toBe("function");
     })
-    it("shold call ProductModel.find({})", async () => {
+    it("should call ProductModel.find({})", async () => {
         await productController.getProducts(req, res, next);
         expect(productModel.find).toHaveBeenCalledWith({});
     });
@@ -113,7 +113,7 @@ describe('Product Controller Update', () => {
     it('should have an updateProduct function', () => {
         expect(typeof productController.updateProduct).toBe('function');
     })
-    it('should call productModel.findByIdAndUPdate', async () => {
+    it('should call productModel.findByIdAndUpdate', async () => {
         req.params.productId = productId;
         req.body = updatedProduct
         await productController.updateProduct(req, res, next);
