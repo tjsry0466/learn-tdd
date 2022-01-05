@@ -110,7 +110,7 @@ describe("Product Controller GetById", () => {
 });
 
 describe('Product Controller Update', () => {
-    it('shuld have an updateProduct function', () => {
+    it('should have an updateProduct function', () => {
         expect(typeof productController.updateProduct).toBe('function');
     })
     it('should call productModel.findByIdAndUPdate', async () => {
