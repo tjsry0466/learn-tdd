@@ -20,8 +20,6 @@ exports.getProducts = async (req, res, next) => {
 
 exports.getProductById = async (req, res, next) => {
     try {
-        console.log("productId")
-        console.log(req.params.productId);
         const product = await productModel.findById(req.params.productId);
         if (product) {
             res.status(200).json(product);
