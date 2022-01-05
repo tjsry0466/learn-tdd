@@ -7,6 +7,7 @@ const allProducts = require('../data/all-products.json');
 productModel.create = jest.fn();
 productModel.find = jest.fn();
 productModel.findById = jest.fn();
+productModel.findByIdAndUpdate = jest.fn();
 
 const productId = "dafsdfdsafs";
 let req, res, next;
@@ -104,4 +105,18 @@ describe("Product Controller GetById", () => {
         await productController.getProductById(req, res, next);
         expect(next).toHaveBeenCalledWith(errorMessage);
     })
+});
+
+describe('Product Controller Update', () => {
+    it('shuld have an updateProduct function', () => {
+        expect(typeof productController.updateProduct).toBe('function');
+    })
+    it('should call productModel.findByIdAndUPdate', async () => {
+        req.params.productId = productId;
+        req.body = {name: 'updated name', description: 'updated description'};
+        await productController.updateProduct(req, res, next);
+        expect(productModel.findByIdAndUpdate).toHaveBeenCalledWith(
+            productId, {name: 'updated name', description: 'updated description'},
+            {new: true});
+    });
 });
